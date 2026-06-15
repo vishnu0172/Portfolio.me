@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vishnu Y — Full Stack & Web3 Developer</title>
+  <title>Vishnu Y — Full Stack Developer</title>
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1733,9 +1733,202 @@
       background: rgba(255,255,255,0.1);
       color: white;
     }
+
+    /* Splash Screen Styles */
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #030712 0%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: splashFadeOut 0.8s ease-in-out 2.5s forwards;
+    }
+
+    .splash-content {
+      text-align: center;
+      animation: splashZoomIn 0.6s ease-out;
+    }
+
+    .splash-logo {
+      font-family: var(--sans-head);
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      animation: splashLogoGlow 1.5s ease-in-out infinite;
+    }
+
+    .splash-logo span {
+      color: var(--text-main);
+    }
+
+    .splash-logo span:nth-child(1),
+    .splash-logo span:nth-child(3) {
+      color: var(--primary);
+      animation: splashBracketPulse 1s ease-in-out infinite;
+    }
+
+    .splash-logo-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .splash-title {
+      font-family: var(--sans-head);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+      animation: splashTitleSlide 0.8s ease-out 0.2s backwards;
+    }
+
+    .splash-loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      height: 40px;
+    }
+
+    .loader-bar {
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      border-radius: 2px;
+      animation: splashLoaderBar 2s ease-in-out infinite;
+    }
+
+    .loader-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--secondary);
+      border-radius: 50%;
+      animation: splashLoaderDot 1.5s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    }
+
+    .splash-subtitle {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      animation: splashSubtitleFade 1s ease-out 0.4s backwards;
+    }
+
+    @keyframes splashFadeOut {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes splashZoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes splashLogoGlow {
+      0%, 100% {
+        text-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+      }
+      50% {
+        text-shadow: 0 0 30px rgba(99, 102, 241, 0.6), 0 0 60px rgba(59, 130, 246, 0.3);
+      }
+    }
+
+    @keyframes splashBracketPulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+      }
+    }
+
+    @keyframes splashTitleSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes splashLoaderBar {
+      0% {
+        transform: scaleX(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: scaleX(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes splashLoaderDot {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+      }
+      50% {
+        transform: scale(1.3);
+        box-shadow: 0 0 24px rgba(59, 130, 246, 1);
+      }
+    }
+
+    @keyframes splashSubtitleFade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Splash Screen -->
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo">
+        <span>&lt;</span><span class="splash-logo-text">Vishnu</span><span>/&gt;</span>
+      </div>
+      <div class="splash-title">Full Stack Developer</div>
+      <div class="splash-loader">
+        <div class="loader-bar"></div>
+        <div class="loader-dot"></div>
+      </div>
+      <div class="splash-subtitle">Building Digital Excellence</div>
+    </div>
+  </div>
 
   <!-- Header -->
   <header>
@@ -1775,7 +1968,7 @@
         <div class="hero-content">
           <span class="hero-tag">Full Stack & Web3 Developer</span>
           <h1 class="hero-title">Hi, I'm <span>Vishnu Y</span></h1>
-          <p class="hero-role">// Full Stack & Blockchain Developer</p>
+          <p class="hero-role">// Full Stack Developer</p>
           <p class="hero-desc">
             I specialize in building scalable, secure, and user-centric web applications. 
             With core expertise in the MERN stack, blockchain technology, and DeFi ecosystems, I create high-performance decentralized solutions.
@@ -1793,7 +1986,7 @@
         <div class="hero-image-panel">
           <div class="photo-container">
             <div class="photo-frame">
-              <img src="your-photo.png" alt="Vishnu Y" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+              <img src="me.jpg" alt="Vishnu Y" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
               <div class="photo-fallback">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -2389,6 +2582,26 @@
                 <span class="contact-channel-val">github.com/vishnu0172</span>
               </div>
             </a>
+            <!-- LeetCode -->
+            <a href="https://leetcode.com/u/vishnuvarddhana_y/" target="_blank" class="contact-channel">
+              <div class="contact-channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M8.5 14.5l2.5 2 5-5"></path></svg>
+              </div>
+              <div class="contact-channel-details">
+                <span class="contact-channel-lbl">LeetCode</span>
+                <span class="contact-channel-val">leetcode.com/vishnuvarddhana_y</span>
+              </div>
+            </a>
+            <!-- GeeksForGeeks -->
+            <a href="https://www.geeksforgeeks.org/profile/yoganathanxxct" target="_blank" class="contact-channel">
+              <div class="contact-channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6M9 15h6"></path></svg>
+              </div>
+              <div class="contact-channel-details">
+                <span class="contact-channel-lbl">GeeksForGeeks</span>
+                <span class="contact-channel-val">geeksforgeeks.org/yoganathanxxct</span>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -2427,6 +2640,12 @@
         </a>
         <a href="#" target="_blank" class="footer-soc-btn" title="LinkedIn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="https://leetcode.com/u/vishnuvarddhana_y/" target="_blank" class="footer-soc-btn" title="LeetCode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M8.5 14.5l2.5 2 5-5"></path></svg>
+        </a>
+        <a href="https://www.geeksforgeeks.org/profile/yoganathanxxct" target="_blank" class="footer-soc-btn" title="GeeksForGeeks">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M9 9h6M9 15h6"></path></svg>
         </a>
       </div>
       <p class="copyright">© 2026 Vishnu Y. All rights reserved.</p>
@@ -2486,6 +2705,25 @@
   </div>
 
   <script>
+    // Splash Screen Handler
+    window.addEventListener('load', function() {
+      const splashScreen = document.getElementById('splashScreen');
+      if (splashScreen) {
+        // Splash screen will auto-hide after 3.3 seconds due to CSS animation
+        // Optional: Add click to skip splash
+        splashScreen.addEventListener('click', function() {
+          splashScreen.style.animation = 'none';
+          splashScreen.style.opacity = '0';
+          splashScreen.style.visibility = 'hidden';
+        });
+      }
+    });
+
+    // Preload splash screen immediately (before page fully loads)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Splash screen is already visible via HTML
+    });
+
     // Project Modal State & Data
     let activeProjectId = null;
     const projectData = {
