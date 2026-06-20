@@ -38,35 +38,35 @@ const projectData = {
     desc: "Messaging application built with WebSockets, instant message delivery, user authentication, and private or group channels.",
     github: null
   },
-  4: {
-    title: "Student Idea Submission",
-    subtitle: "Flask & SQLite",
-    desc: "A portal allowing students to submit project concepts, with an approval dashboard, email notifications, and supervisor roles.",
-    github: null
-  },
+   4: {
+          title: "Smart Financial Advisor",
+          subtitle: "Full Stack MERN & AI",
+          desc: "Built an AI-powered smart financial advisor that takes user income and expenses as input to calculate budget planning, insurance recommendations, investment st…Built an AI-powered smart financial advisor that takes user income and expenses as input to calculate budget planning, insurance recommendations, investment strategies, and comprehensive financial guidance that covers all aspects of personal finance management in one platform.",
+          github: "https://github.com/vishnu0172/Finwise",
+        },
   5: {
     title: "Blockchain Voting System",
     subtitle: "Web3 & Solidity",
     desc: "Decentralized, anonymous, and tamper-proof ballot submission and tallying system built on Ethereum.",
-    github: null
+    github: "https://github.com/vishnu0172/Blockchain-VotingSystem"
   },
   6: {
     title: "Certificate Validation",
     subtitle: "Solidity & IPFS",
     desc: "Generates and validates academic certificates on-chain with immutable records, eliminating credential fraud using IPFS decentralized storage.",
-    github: null
+    github: "https://github.com/vishnu0172/CertificateGenerationAndValidation"
   },
   7: {
     title: "Sentiment Analysis Pipeline",
     subtitle: "Python & Machine Learning",
     desc: "NLP classifier evaluating text sentiment with model training metrics and a REST API integration layer.",
-    github: null
+    github: "https://github.com/vishnu0172/Sentiment-Review-Analyser"
   },
   8: {
     title: "Secure Data Deletion",
     subtitle: "Python & Cryptography",
     desc: "Custom algorithm applying multi-pass wiping sequences on local storage systems to block forensic file recovery.",
-    github: null
+    github: "https://github.com/vishnu0172/Secure-Data-Deletion"
   }
 };
 
