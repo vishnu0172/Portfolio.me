@@ -193,38 +193,37 @@ function loadDemoSimulator(id) {
     case 4:
       demoContent.innerHTML = `
         <div>
-          <div class="demo-form" id="submissionForm">
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Enter your financial details to generate an AI-powered plan.</p>
+          <div class="demo-form" id="financialForm">
             <div class="demo-group">
-              <label class="demo-label">Idea Title</label>
-              <input id="ideaTitle" type="text" class="demo-input" placeholder="e.g. Decentralized File Sharing System" />
+              <label class="demo-label">Monthly Income ($)</label>
+              <input id="finIncome" type="number" class="demo-input" placeholder="e.g. 5000" />
             </div>
             <div class="demo-group">
-              <label class="demo-label">Brief Description</label>
-              <textarea id="ideaDesc" class="demo-input" style="height:60px;" placeholder="Outline the tech stack and implementation strategy..."></textarea>
+              <label class="demo-label">Monthly Expenses ($)</label>
+              <input id="finExpenses" type="number" class="demo-input" placeholder="e.g. 2000" />
             </div>
-            <button onclick="submitStudentIdea()" class="demo-btn">Submit Project Idea</button>
+            <div class="demo-group">
+              <label class="demo-label">Risk Tolerance</label>
+              <select id="finRisk" class="demo-input" style="background: #1e293b;">
+                <option value="Low">Low (Bonds & Savings)</option>
+                <option value="Medium">Medium (Index Funds & ETFs)</option>
+                <option value="High">High (Stocks & Crypto)</option>
+              </select>
+            </div>
+            <button onclick="generateFinancialPlan()" class="demo-btn">Generate Financial Plan</button>
           </div>
-          <div id="ideaDashboard" style="margin-top:20px; display:none;">
-            <h5 style="margin-bottom:8px; font-family:var(--sans-head);">Supervisor Dashboard View</h5>
-            <table style="width:100%; border-collapse:collapse; font-size:0.85rem; border: 1px solid var(--card-border);">
-              <thead>
-                <tr style="background:#1e293b; text-align:left;">
-                  <th style="padding:8px;">Project Idea</th>
-                  <th style="padding:8px;">Status</th>
-                  <th style="padding:8px; text-align:center;">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="dashTitle" style="padding:8px; font-weight:600;"></td>
-                  <td id="dashStatus" style="padding:8px; color:#fbbf24;">Pending Approval</td>
-                  <td style="padding:8px; text-align:center; display:flex; gap:6px; justify-content:center;">
-                    <button onclick="approveIdea(true)" class="demo-btn" style="padding:4px 10px; font-size:0.75rem; background:#10b981;">Approve</button>
-                    <button onclick="approveIdea(false)" class="demo-btn" style="padding:4px 10px; font-size:0.75rem; background:#ef4444;">Reject</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="financialDashboard" style="margin-top:20px; display:none; background: var(--card-bg); padding: 16px; border-radius: 8px; border: 1px solid var(--card-border);">
+            <h5 style="margin-bottom:12px; font-family:var(--sans-head); color: var(--primary);">Your Smart Financial Plan</h5>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+              <strong style="color:white;">Budget Analysis:</strong> <span id="dashSavings"></span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
+              <strong style="color:white;">Investment Strategy:</strong> <span id="dashInvestment"></span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+              <strong style="color:white;">Insurance Recommendation:</strong> <span id="dashInsurance"></span>
+            </div>
           </div>
         </div>
       `;
@@ -401,29 +400,43 @@ window.sendChatMessage = function() {
   }, 1000);
 };
 
-// SIMULATOR 4 helper: Student Idea Submission
-window.submitStudentIdea = function() {
-  const title = document.getElementById('ideaTitle').value.trim();
-  const desc = document.getElementById('ideaDesc').value.trim();
-  if (!title || !desc) {
-    alert("Please fill out the project idea details.");
+// SIMULATOR 4 helper: Smart Financial Advisor
+window.generateFinancialPlan = function() {
+  const income = parseFloat(document.getElementById('finIncome').value);
+  const expenses = parseFloat(document.getElementById('finExpenses').value);
+  const risk = document.getElementById('finRisk').value;
+
+  if (!income || !expenses || income <= 0 || expenses <= 0) {
+    alert("Please enter valid income and expenses.");
     return;
   }
-  document.getElementById('dashTitle').innerText = title;
-  document.getElementById('dashStatus').innerText = "Pending Approval";
-  document.getElementById('dashStatus').style.color = "#fbbf24";
-  document.getElementById('ideaDashboard').style.display = 'block';
-};
 
-window.approveIdea = function(isApproved) {
-  const statusCell = document.getElementById('dashStatus');
-  if (isApproved) {
-    statusCell.innerText = "Approved by Supervisor";
-    statusCell.style.color = "#10b981";
+  let savings = income - expenses;
+  let savingsMsg = "";
+  let investmentMsg = "";
+  let insuranceMsg = "";
+
+  if (savings <= 0) {
+    savingsMsg = "Deficit detected. Focus on reducing discretionary spending by 20%.";
+    investmentMsg = "Halt investments until an emergency fund is built.";
+    insuranceMsg = "Consider basic health coverage to prevent unexpected debt.";
   } else {
-    statusCell.innerText = "Rejected / Edits Required";
-    statusCell.style.color = "#ef4444";
+    savingsMsg = "You are saving $" + savings + " per month. Excellent!";
+    if (risk === "Low") {
+      investmentMsg = "Allocate 70% to High-Yield Savings & Bonds, 30% to safe Index Funds.";
+    } else if (risk === "Medium") {
+      investmentMsg = "Allocate 60% to S&P 500 ETFs, 20% to Bonds, 20% to Tech Stocks.";
+    } else {
+      investmentMsg = "Allocate 50% to Growth Stocks, 30% to Index Funds, 20% to Crypto.";
+    }
+    insuranceMsg = "Maintain standard Health Insurance and consider Term Life Insurance.";
   }
+
+  document.getElementById('dashSavings').innerText = savingsMsg;
+  document.getElementById('dashInvestment').innerText = investmentMsg;
+  document.getElementById('dashInsurance').innerText = insuranceMsg;
+
+  document.getElementById('financialDashboard').style.display = 'block';
 };
 
 // SIMULATOR 5 helper: MetaMask Ethereum ballot voting
