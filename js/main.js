@@ -1,10 +1,10 @@
 // Splash Screen Handler
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   const splashScreen = document.getElementById('splashScreen');
   if (splashScreen) {
     // Splash screen will auto-hide after 3.3 seconds due to CSS animation
     // Optional: Add click to skip splash
-    splashScreen.addEventListener('click', function() {
+    splashScreen.addEventListener('click', function () {
       splashScreen.style.animation = 'none';
       splashScreen.style.opacity = '0';
       splashScreen.style.visibility = 'hidden';
@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
 });
 
 // Preload splash screen immediately (before page fully loads)
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Splash screen is already visible via HTML
 });
 
@@ -38,12 +38,12 @@ const projectData = {
     desc: "Messaging application built with WebSockets, instant message delivery, user authentication, and private or group channels.",
     github: null
   },
-   4: {
-          title: "Smart Financial Advisor",
-          subtitle: "Full Stack MERN & AI",
-          desc: "Built an AI-powered smart financial advisor that takes user income and expenses as input to calculate budget planning, insurance recommendations, investment st…Built an AI-powered smart financial advisor that takes user income and expenses as input to calculate budget planning, insurance recommendations, investment strategies, and comprehensive financial guidance that covers all aspects of personal finance management in one platform.",
-          github: "https://github.com/vishnu0172/Finwise",
-        },
+  4: {
+    title: "Smart Financial Advisor",
+    subtitle: "Full Stack MERN & AI",
+    desc: "Built an AI-powered smart financial advisor that takes user income and expenses as input to calculate budget planning, insurance recommendations, investment st…Built an AI-powered smart financial advisor that takes user income and expenses as input to calculate budget planning, insurance recommendations, investment strategies, and comprehensive financial guidance that covers all aspects of personal finance management in one platform.",
+    github: "https://github.com/vishnu0172/Finwise",
+  },
   5: {
     title: "Blockchain Voting System",
     subtitle: "Web3 & Solidity",
@@ -75,7 +75,7 @@ const selectStep = document.getElementById('modalSelectStep');
 const demoStep = document.getElementById('modalDemoStep');
 const demoContent = document.getElementById('demoContent');
 
-window.openProjectModal = function(id) {
+window.openProjectModal = function (id) {
   activeProjectId = id;
   const data = projectData[id];
   if (!data) return;
@@ -108,7 +108,7 @@ window.openProjectModal = function(id) {
   document.body.style.overflow = 'hidden';
 };
 
-window.closeProjectModal = function() {
+window.closeProjectModal = function () {
   modal.classList.remove('open');
   setTimeout(() => {
     modal.style.display = 'none';
@@ -117,13 +117,13 @@ window.closeProjectModal = function() {
   activeProjectId = null;
 };
 
-window.backToModalSelect = function() {
+window.backToModalSelect = function () {
   demoStep.style.display = 'none';
   selectStep.style.display = 'block';
   demoContent.innerHTML = '';
 };
 
-window.launchLiveDemo = function() {
+window.launchLiveDemo = function () {
   selectStep.style.display = 'none';
   demoStep.style.display = 'block';
   loadDemoSimulator(activeProjectId);
@@ -137,7 +137,7 @@ modal.addEventListener('click', (e) => {
 });
 
 function loadDemoSimulator(id) {
-  switch(id) {
+  switch (id) {
     case 1:
       demoContent.innerHTML = `
         <div class="demo-form">
@@ -323,11 +323,11 @@ function loadDemoSimulator(id) {
 }
 
 // SIMULATOR 1 helper: Certificate generation
-window.runCertGeneration = function() {
+window.runCertGeneration = function () {
   const name = document.getElementById('certName').value.trim() || 'Vishnu Y';
   const track = document.getElementById('certTrack').value;
   const certOutput = document.getElementById('certOutput');
-  
+
   certOutput.style.display = 'block';
   certOutput.innerHTML = `
     <div class="cert-frame">
@@ -357,7 +357,7 @@ window.runCertGeneration = function() {
 };
 
 // SIMULATOR 2 helper: WAF Console
-window.sendWafRequest = function(type) {
+window.sendWafRequest = function (type) {
   const console = document.getElementById('wafConsole');
   const time = new Date().toLocaleTimeString();
   let logLine = '';
@@ -369,13 +369,13 @@ window.sendWafRequest = function(type) {
   } else if (type === 'xss') {
     logLine = `<div class="terminal-line error">[${time}] <span style="color:#ef4444;">[BLOCKED 403]</span> GET /search?q=%3Cscript%3Ealert(document.cookie)... - IP 45.33.1.201 blocked. Reason: Threat pattern XSS filter matched script tags.</div>`;
   }
-  
+
   console.innerHTML += logLine;
   console.scrollTop = console.scrollHeight;
 };
 
 // SIMULATOR 3 helper: Chat App
-window.sendChatMessage = function() {
+window.sendChatMessage = function () {
   const input = document.getElementById('chatInput');
   const box = document.getElementById('chatBox');
   const text = input.value.trim();
@@ -401,7 +401,7 @@ window.sendChatMessage = function() {
 };
 
 // SIMULATOR 4 helper: Smart Financial Advisor
-window.generateFinancialPlan = function() {
+window.generateFinancialPlan = function () {
   const income = parseFloat(document.getElementById('finIncome').value);
   const expenses = parseFloat(document.getElementById('finExpenses').value);
   const risk = document.getElementById('finRisk').value;
@@ -444,14 +444,14 @@ let selectedCandidateId = null;
 let votes = { 1: 142, 2: 98 };
 let web3Step = 'connect'; // connect, sign
 
-window.selectCandidate = function(id) {
+window.selectCandidate = function (id) {
   document.getElementById('cand1').classList.remove('selected');
   document.getElementById('cand2').classList.remove('selected');
   document.getElementById('cand' + id).classList.add('selected');
   selectedCandidateId = id;
 };
 
-window.castBlockchainVote = function() {
+window.castBlockchainVote = function () {
   if (!selectedCandidateId) {
     alert("Please select a candidate first.");
     return;
@@ -460,7 +460,7 @@ window.castBlockchainVote = function() {
   const popup = document.getElementById('metaMaskPopup');
   const body = document.getElementById('metaMaskBody');
   const confirmBtn = document.getElementById('metaMaskConfirmBtn');
-  
+
   popup.style.display = 'block';
   web3Step = 'connect';
   body.innerHTML = `
@@ -470,12 +470,12 @@ window.castBlockchainVote = function() {
   confirmBtn.innerText = "Connect";
 };
 
-window.cancelWeb3Tx = function() {
+window.cancelWeb3Tx = function () {
   document.getElementById('metaMaskPopup').style.display = 'none';
   document.getElementById('voteHash').innerText = "MetaMask wallet signing rejected by user.";
 };
 
-window.confirmWeb3Tx = function() {
+window.confirmWeb3Tx = function () {
   const body = document.getElementById('metaMaskBody');
   const confirmBtn = document.getElementById('metaMaskConfirmBtn');
   const hashText = document.getElementById('voteHash');
@@ -492,11 +492,11 @@ window.confirmWeb3Tx = function() {
   } else if (web3Step === 'sign') {
     document.getElementById('metaMaskPopup').style.display = 'none';
     hashText.innerText = "Mining transaction block... please wait.";
-    
+
     setTimeout(() => {
       votes[selectedCandidateId]++;
       document.getElementById('votes' + selectedCandidateId).innerText = votes[selectedCandidateId];
-      const txHash = '0x' + Array.from({length: 40}, () => Math.floor(Math.random()*16).toString(16)).join('');
+      const txHash = '0x' + Array.from({ length: 40 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
       hashText.innerHTML = `
         <span style="color:#10b981; font-weight:700; display:block; margin-bottom:4px;">✓ Vote Broadcasted successfully!</span>
         Tx Hash: ${txHash}
@@ -506,14 +506,14 @@ window.confirmWeb3Tx = function() {
 };
 
 // SIMULATOR 6 helper: Polygon certificate validation search
-window.verifyOnChain = function() {
+window.verifyOnChain = function () {
   const hash = document.getElementById('verifyTxHash').value.trim();
   const result = document.getElementById('verifyResults');
   if (!hash) {
     alert("Please enter a valid credential hash.");
     return;
   }
-  
+
   result.style.display = 'block';
   result.innerHTML = `<p style="color:var(--text-muted); text-align:center;">Querying Polygon smart contract ledger...</p>`;
 
@@ -537,7 +537,7 @@ window.verifyOnChain = function() {
 };
 
 // SIMULATOR 7 helper: Sentiment analysis classifier pipeline
-window.runSentimentPipeline = function() {
+window.runSentimentPipeline = function () {
   const text = document.getElementById('sentimentText').value.trim().toLowerCase();
   const result = document.getElementById('sentimentResult');
   if (!text) {
@@ -556,8 +556,8 @@ window.runSentimentPipeline = function() {
     let posCount = 0;
     let negCount = 0;
 
-    positiveWords.forEach(w => { if(text.includes(w)) posCount++; });
-    negativeWords.forEach(w => { if(text.includes(w)) negCount++; });
+    positiveWords.forEach(w => { if (text.includes(w)) posCount++; });
+    negativeWords.forEach(w => { if (text.includes(w)) negCount++; });
 
     let sentiment = "Neutral";
     let score = 50;
@@ -590,11 +590,11 @@ window.runSentimentPipeline = function() {
 };
 
 // SIMULATOR 8 helper: Secure data deletion console logs
-window.runShredConsole = function() {
+window.runShredConsole = function () {
   const file = document.getElementById('shredFile').value.trim();
   const standard = document.getElementById('shredStandard').value;
   const consoleDiv = document.getElementById('shredConsole');
-  
+
   if (!file) {
     alert("Please enter a file path.");
     return;
@@ -611,7 +611,7 @@ window.runShredConsole = function() {
     if (pass <= maxPass) {
       consoleDiv.innerHTML += `<div class="terminal-line info">[PASS ${pass}] Overwriting block nodes with ${pass === 1 ? 'random noise' : pass === 2 ? 'binary ones (0xFF)' : 'verified zero bits (0x00)'}...</div>`;
       consoleDiv.scrollTop = consoleDiv.scrollHeight;
-      
+
       setTimeout(() => {
         consoleDiv.innerHTML += `<div class="terminal-line">[PASS ${pass} OK] Verification block check successful.</div>`;
         consoleDiv.scrollTop = consoleDiv.scrollHeight;
@@ -621,7 +621,7 @@ window.runShredConsole = function() {
     } else {
       consoleDiv.innerHTML += `<div class="terminal-line warning">[DELETING] Severing index pointers and file system inode block descriptors...</div>`;
       consoleDiv.scrollTop = consoleDiv.scrollHeight;
-      
+
       setTimeout(() => {
         consoleDiv.innerHTML += `<div class="terminal-line" style="color:#10b981; font-weight:700;">[DESTROYED] File data shredded and unrecoverable. Sector audit reports zero residue footprint.</div>`;
         consoleDiv.scrollTop = consoleDiv.scrollHeight;
@@ -694,4 +694,28 @@ const observeSkills = new IntersectionObserver((entries) => {
 
 skillBars.forEach(bar => {
   observeSkills.observe(bar);
+});
+
+// Contact Form Handler
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      // Construct mailto link or gmail link
+      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=vishnuvarddhanay@gmail.com&su=${subject}&body=${body}`;
+      
+      window.open(gmailUrl, '_blank');
+      
+      // Optional: reset form
+      contactForm.reset();
+    });
+  }
 });
